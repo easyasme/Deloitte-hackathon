@@ -1,0 +1,2 @@
+model,feature_map,n_qubits,ansatz_reps,ansatz_entanglement,num_trainable_params,maxiter,train_samples,test_samples,train_time_sec,accuracy,precision,recall,f1,roc_auc
+VQC,AngleEncodingRY,4,3,full,16,200,1470,490,392.60666513442993,0.4816326530612245,0.45584045584045585,0.7174887892376681,0.5574912891986062,0.48534623200819604

@@ -1,0 +1,60 @@
+{
+  "step": 4,
+  "input_file": "task1_step2_classical_ready.csv",
+  "train_output": "task1_step4_quantum_train.csv",
+  "test_output": "task1_step4_quantum_test.csv",
+  "time_split": {
+    "train_max_year": 2020,
+    "test_year": 2021
+  },
+  "raw_feature_cols": [
+    "avg_tmax_c",
+    "avg_tmin_c",
+    "tot_prcp_mm",
+    "temp_range_c",
+    "dryness_proxy",
+    "year_index"
+  ],
+  "target_col": "fire_occurred",
+  "preprocessing": {
+    "use_standardize_before_pca": true,
+    "use_pca": true,
+    "n_qubits": 4,
+    "angle_range": [
+      0.0,
+      3.141592653589793
+    ],
+    "angle_clipping_applied": true
+  },
+  "pca": {
+    "used": true,
+    "n_components": 4,
+    "explained_variance_ratio": [
+      0.4898430131941325,
+      0.16703853722803902,
+      0.15455382759167718,
+      0.1336914571583086
+    ],
+    "total_explained_variance": 0.9451268351721573
+  },
+  "feature_map": {
+    "name": "AngleEncoding",
+    "description": "Each reduced feature is scaled and clipped to [0, pi], then mapped to one qubit rotation angle.",
+    "n_features": 4,
+    "n_qubits": 4,
+    "rotation_gate": "RY"
+  },
+  "ansatz": {
+    "name": "RealAmplitudes",
+    "description": "Parameterized variational ansatz with single-qubit rotations and entanglement.",
+    "reps": 2,
+    "entanglement": "linear"
+  },
+  "resource_estimate": {
+    "n_qubits": 4,
+    "feature_dimension_after_reduction": 4,
+    "train_samples": 1470,
+    "test_samples": 490,
+    "note": "Final trainable parameter count depends on the ansatz implementation in Step 5."
+  }
+}
