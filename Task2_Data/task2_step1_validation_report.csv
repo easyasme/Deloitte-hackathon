@@ -1,0 +1,14 @@
+metric,value
+raw_rows,47033
+raw_columns,76
+post_dedup_rows,31343
+train_years,"2018,2019,2020"
+train_year_counts,"2018:9306,2019:9329,2020:12708"
+holdout_rows,12708
+holdout_year,2021
+unique_zips,2251
+unique_year_zip_combos,6170
+categories,"CO,DO,DT,HO,MH,RT"
+nan_preserved,true
+temporal_integrity,"train_max_year=2020,holdout_year=2021"
+duplicate_triples_remaining,0
