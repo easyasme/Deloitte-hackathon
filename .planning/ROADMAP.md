@@ -36,7 +36,7 @@ Predict 2021 insurance premiums for ~1600 California ZIP codes using 2018-2020 h
 **Plans:** 1 plan
 
 Plans:
-- [ ] 01-01-PLAN.md — Load insurance + fire + census + weather CSV, deduplicate on (Year, ZIP, Category), split 2021 holdout, produce validation report
+- [x] 01-01-PLAN.md — Load insurance + fire + census + weather CSV, deduplicate on (Year, ZIP, Category), split 2021 holdout, produce validation report
 
 ---
 
