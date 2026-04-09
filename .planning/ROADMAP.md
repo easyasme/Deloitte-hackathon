@@ -56,7 +56,10 @@ Plans:
 5. Zero-inflated claims distribution documented; Tweedie vs two-part decision deferred to Phase 3
 6. Avg Fire Risk Score from dataset used as primary wildfire risk predictor
 
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [x] 03-01-PLAN.md — Train Linear Regression and Random Forest baselines on 2019 train/2020 validation temporal split, report RMSE/MAE/MAPE, document COVID coefficient
 
 ---
 
@@ -75,7 +78,10 @@ Plans:
 4. RMSE, MAE, MAPE reported for both baselines on 2020 validation set
 5. 2020 COVID-19 anomaly documented with explicit flag in dataset
 
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [x] 03-01-PLAN.md — Train Linear Regression and Random Forest baselines on 2019 train/2020 validation temporal split, report RMSE/MAE/MAPE, document COVID coefficient
 
 ---
 
