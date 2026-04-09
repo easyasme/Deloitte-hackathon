@@ -1,0 +1,36 @@
+INSURANCE PREMIUM TIME SERIES PREDICTION MODEL
+============================================================
+
+Training Period: 2018-2020
+Prediction Year: 2021
+ZIP Codes: 13,344
+
+MODELS USED:
+1. Gradient Boosting Regressor
+2. Random Forest Regressor
+3. Ridge Regression
+4. Panel Time Series (Year + ZIP effects)
+5. Ensemble (weighted average)
+
+CROSS-VALIDATION RESULTS (2018-2020):
+  Gradient Boosting: MAE=$81,310, R2=0.945
+  Random Forest: MAE=$95,141, R2=0.930
+  Ridge Regression: MAE=$226,624, R2=0.765
+  Panel Time Series: MAE=$234,350, R2=0.763
+
+2021 TEST PERFORMANCE:
+  Ensemble MAE: $137,833
+  Ensemble RMSE: $414,605
+  Ensemble R2: 0.942
+
+TOP 10 FEATURES:
+  - Earned Exposure: 0.790
+  - Number of Very High Fire Risk Exposure: 0.042
+  - housing_value: 0.041
+  - Number of High Fire Risk Exposure: 0.031
+  - Earned Premium_lag1: 0.030
+  - premium_growth_yoy: 0.018
+  - median_income: 0.014
+  - Earned Premium_lag2: 0.008
+  - Avg Fire Risk Score: 0.004
+  - total_population: 0.004

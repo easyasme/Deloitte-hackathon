@@ -1,0 +1,28 @@
+QUANTUM WILDFIRE RISK PREDICTION MODEL
+==================================================
+
+Model: Variational Quantum Classifier (VQC)
+Qubits: 6
+Circuit depth: 10
+Training samples: 250
+Test accuracy: 0.7678571428571429
+
+Selected features:
+  - total_fires_2018_2022
+  - total_acres_2018_2022
+  - mean_acres_per_fire
+  - fire_trend
+  - mean_tmax
+  - total_prcp
+
+Top risk zips:
+  1. 90265 (score: 1)
+  2. 91311 (score: 1)
+  3. 91320 (score: 1)
+  4. 91321 (score: 1)
+  5. 91381 (score: 1)
+  6. 91384 (score: 1)
+  7. 91390 (score: 1)
+  8. 91906 (score: 1)
+  9. 91917 (score: 1)
+  10. 92086 (score: 1)
