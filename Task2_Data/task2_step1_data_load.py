@@ -11,7 +11,6 @@ Output:
 """
 
 import pandas as pd
-import numpy as np
 
 # ============================================================
 # CONSTANTS
@@ -102,7 +101,7 @@ for col in categorical_first_cols:
     if col in df.columns:
         agg_dict[col] = 'first'
 
-print(f"Numeric sum cols in agg_dict: {len([v for v in agg_dict.values() if v == 'sum'])}")
+print(f"Numeric sum cols in agg_dict: {len([v for v in agg_dict.values() if callable(v)])}")
 print(f"Categorical first cols in agg_dict: {len([v for v in agg_dict.values() if v == 'first'])}")
 
 # ============================================================

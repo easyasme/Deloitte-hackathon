@@ -1,0 +1,2 @@
+total_validation_rows,train_rows,non_zero_premium_count,zero_premium_count,zero_premium_pct,lr_covid_coef,lr_rmse,lr_mae,lr_mape,rf_rmse,rf_mae,rf_mape
+12708,9329,9887,2821,22.19861504564054,0.0,515829.7866877668,194560.88106091612,7754.6975874979735,999715.7012205296,165535.84650573978,40.4156773968053
