@@ -1,0 +1,44 @@
+feature,importance
+Earned Premium_lag1,9.590925283851443e+16
+Earned Exposure,1.1464282447314944e+16
+Earned Exposure_lag1,8966747218957312.0
+Cov C Amount Weighted Avg,5361789230596096.0
+Cov A Amount Weighted Avg,2979685087447552.0
+median_monthly_housing_costs,1259510115057664.0
+Number of Very High Fire Risk Exposure,997941153918976.0
+avg_tmax_c,878600437181440.0
+Avg PPC_lag1,767726106397440.0
+Number of Moderate Fire Risk Exposure,582374161379328.0
+Number of High Fire Risk Exposure,450583606705152.0
+owner_occupied_housing_units,382476829382656.0
+Number of Low Fire Risk Exposure,369295458316288.0
+educational_attainment_bachelor_or_higher,355462020200448.0
+Avg Fire Risk Score_lag1,324924979810304.0
+Number of Negligible Fire Risk Exposure,185932976973824.0
+Avg Fire Risk Score,182803169099776.0
+housing_value,108558776422400.0
+median_income,91904249714688.0
+Avg PPC,91662275819520.0
+housing_vacancy_number,81190785554432.0
+housing_occupancy_number,79814019739648.0
+total_housing_units,78325468783488.0
+cat_HO,75832846852096.0
+poverty_status,69255753915904.0
+Non-CAT Cov A Fire -  Incurred Losses_lag1,66611504574464.0
+average_household_size,66451554338816.0
+expanding_fire_risk_mean,65377602277376.0
+expanding_exposure_mean,61967702486528.0
+renter_occupied_housing_units,52971269550080.0
+total_population,51174563280896.0
+cat_DT,28292094754816.0
+CAT Cov A Fire -  Incurred Losses_lag1,17677865531392.0
+avg_tmin_c,9899622196736.0
+cat_DO,1749386080256.0
+year_structure_built,1021697671168.0
+tot_prcp_mm,828472566784.0
+cat_RT,316827203584.0
+cat_NA,0.0
+cat_MH,0.0
+cat_CO,0.0
+expanding_fire_risk_std,0.0
+is_covid_year,0.0
