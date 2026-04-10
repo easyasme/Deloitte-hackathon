@@ -11,10 +11,10 @@ Predict 2021 insurance premiums for ~1600 California ZIP codes using 2018-2020 h
 
 ## Phases
 
-- [ ] **Phase 1: Data Foundation** — Load, clean, and validate panel dataset (insurance + fire + census + weather)
-- [ ] **Phase 2: Feature Engineering** — Build lag features, rolling stats, encodings, exposure normalization
-- [ ] **Phase 3: Baseline Models + Temporal Validation** — Establish metrics with linear regression and random forest baselines
-- [ ] **Phase 4: Model Development + Ensemble** — Panel FE + LightGBM ensemble with COVID adjustment
+- [x] **Phase 1: Data Foundation** — Load, clean, and validate panel dataset (insurance + fire + census + weather)
+- [x] **Phase 2: Feature Engineering** — Build lag features, rolling stats, encodings, exposure normalization
+- [x] **Phase 3: Baseline Models + Temporal Validation** — Establish metrics with linear regression and random forest baselines
+- [x] **Phase 4: Model Development + Ensemble** — Panel FE + LightGBM ensemble with COVID adjustment
 - [ ] **Phase 5: 2021 Prediction + Error Analysis** — Generate predictions, analyze errors, document
 
 ## Phase Details
@@ -59,7 +59,7 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [x] 03-01-PLAN.md — Train Linear Regression and Random Forest baselines on 2019 train/2020 validation temporal split, report RMSE/MAE/MAPE, document COVID coefficient
+- [x] 02-01-PLAN.md — Build feature matrix with temporal lags, rolling stats, category encoding
 
 ---
 
@@ -101,7 +101,12 @@ Plans:
 5. COVID-19 2020 structural break addressed via downweighting, masking, or indicator variable
 6. Feature importance analysis available for both models
 
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [x] 04-01-PLAN.md — Panel FE model with COVID-19 sample weighting
+- [x] 04-02-PLAN.md — LightGBM model with lag features and ZIP aggregations
+- [x] 04-03-PLAN.md — Ensemble weight optimization via grid search
 
 ---
 
@@ -122,7 +127,12 @@ Plans:
 6. Performance metrics (RMSE, MAE, MAPE) reported for all models
 7. Comparison with classical approaches discussed (vs quantum/Task 1)
 
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Generate 2021 predictions using 80% Panel FE + 20% LightGBM ensemble
+- [ ] 05-02-PLAN.md — Error analysis: RMSE/MAE/MAPE, top-error ZIPs, fire risk correlation
+- [ ] 05-03-PLAN.md — Documentation: model approach, hyperparameters, fire risk ablation, Task 1 comparison
 
 ---
 
@@ -130,11 +140,11 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Data Foundation | 0/1 | Not started | - |
-| 2. Feature Engineering | 0/1 | Not started | - |
-| 3. Baseline Models + Temporal Validation | 0/1 | Not started | - |
-| 4. Model Development + Ensemble | 0/1 | Not started | - |
-| 5. 2021 Prediction + Error Analysis | 0/1 | Not started | - |
+| 1. Data Foundation | 1/1 | Complete | 2026-04-09 |
+| 2. Feature Engineering | 1/1 | Complete | 2026-04-09 |
+| 3. Baseline Models + Temporal Validation | 1/1 | Complete | 2026-04-09 |
+| 4. Model Development + Ensemble | 3/3 | Complete | 2026-04-10 |
+| 5. 2021 Prediction + Error Analysis | 0/3 | In progress | - |
 
 ## Coverage Map
 
@@ -149,5 +159,5 @@ PRED-01, PRED-02, PRED-03, PRED-04 → Phase 5
 DOC-01, DOC-02, DOC-03
 ```
 
-**Coverage:** 24/24 v1 requirements mapped ✓
+**Coverage:** 24/24 v1 requirements mapped
 **No orphaned requirements**
