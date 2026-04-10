@@ -273,9 +273,13 @@ y_actual_2021 = holdout['Earned Premium'].values
 
 # Load with-fire-risk predictions from Plan 05-01
 preds_with_fire = pd.read_csv("Task2_Data/task2_step5_predictions.csv")
+
+# Verify ZIP-level alignment before using predictions (CR-01 fix)
+assert np.array_equal(preds_with_fire['ZIP'].values, holdout['ZIP'].values), \
+    "ZIP misalignment: task2_step5_predictions.csv ZIPs do not match holdout"
 y_pred_with_fire = preds_with_fire['predicted_premium'].values
 
-# Verify alignment
+# Verify length alignment
 assert len(y_pred_2021_no_fire) == len(y_actual_2021), f"Length mismatch: {len(y_pred_2021_no_fire)} vs {len(y_actual_2021)}"
 assert len(y_pred_with_fire) == len(y_actual_2021), f"Length mismatch: {len(y_pred_with_fire)} vs {len(y_actual_2021)}"
 
