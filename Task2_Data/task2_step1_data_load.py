@@ -11,15 +11,17 @@ Output:
 """
 
 import pandas as pd
-import numpy as np
 
 # ============================================================
 # CONSTANTS
 # ============================================================
-INPUT_FILE = "abfa2rbci2UF6CTj_cal_insurance_fire_census_weather.csv"
-OUTPUT_TRAIN = "task2_step1_panel_clean.csv"
-OUTPUT_HOLDOUT = "task2_step1_2021_holdout.csv"
-VALIDATION_OUT = "task2_step1_validation_report.csv"
+import os
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+INPUT_FILE = os.path.join(SCRIPT_DIR, "abfa2rbci2UF6CTj_cal_insurance_fire_census_weather.csv")
+OUTPUT_TRAIN = os.path.join(SCRIPT_DIR, "task2_step1_panel_clean.csv")
+OUTPUT_HOLDOUT = os.path.join(SCRIPT_DIR, "task2_step1_2021_holdout.csv")
+VALIDATION_OUT = os.path.join(SCRIPT_DIR, "task2_step1_validation_report.csv")
 
 # ============================================================
 # STEP 1: LOAD
@@ -102,7 +104,7 @@ for col in categorical_first_cols:
     if col in df.columns:
         agg_dict[col] = 'first'
 
-print(f"Numeric sum cols in agg_dict: {len([v for v in agg_dict.values() if v == 'sum'])}")
+print(f"Numeric sum cols in agg_dict: {len([v for v in agg_dict.values() if callable(v)])}")
 print(f"Categorical first cols in agg_dict: {len([v for v in agg_dict.values() if v == 'first'])}")
 
 # ============================================================
