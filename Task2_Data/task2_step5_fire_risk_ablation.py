@@ -20,9 +20,12 @@ warnings.filterwarnings("ignore")
 # ============================================================
 # CONSTANTS
 # ============================================================
-INPUT_HOLDOUT = "Task2_Data/task2_step1_2021_holdout.csv"
-INPUT_FEATURE_MATRIX = "Task2_Data/task2_step2_feature_matrix.csv"
-INPUT_RAW = "Task2_Data/task2_step1_panel_clean.csv"
+import os
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+INPUT_HOLDOUT = os.path.join(SCRIPT_DIR, "task2_step1_2021_holdout.csv")
+INPUT_FEATURE_MATRIX = os.path.join(SCRIPT_DIR, "task2_step2_feature_matrix.csv")
+INPUT_RAW = os.path.join(SCRIPT_DIR, "task2_step1_panel_clean.csv")
 ENSEMBLE_WEIGHT_PANEL_FE = 0.80
 ENSEMBLE_WEIGHT_LGB = 0.20
 
@@ -45,19 +48,23 @@ print(f"2021 Holdout shape: {holdout.shape}")
 print(f"Feature Matrix shape: {df.shape}")
 
 # ============================================================
-# STEP 2: Compute 2021 lag features WITHOUT fire risk
+# STEP 2: Derive 2021 lag features from 2020 panel (no leakage)
+# Lag1 features must come from the 2018-2020 panel, not same-year holdout
 # ============================================================
-print("\n--- STEP 2: Compute 2021 lag features (no fire risk) ---")
-lag_mapping = {
+print("\n--- STEP 2: Compute 2021 lag features from 2020 panel (no leakage) ---")
+panel_2020 = raw_df[raw_df['Year'] == 2020][['ZIP', 'Category', 'Earned Exposure',
+    'Earned Premium', 'CAT Cov A Fire -  Incurred Losses',
+    'Non-CAT Cov A Fire -  Incurred Losses', 'Avg PPC']].copy()
+panel_2020 = panel_2020.rename(columns={
     'Earned Exposure': 'Earned Exposure_lag1',
     'Earned Premium': 'Earned Premium_lag1',
     'CAT Cov A Fire -  Incurred Losses': 'CAT Cov A Fire -  Incurred Losses_lag1',
     'Non-CAT Cov A Fire -  Incurred Losses': 'Non-CAT Cov A Fire -  Incurred Losses_lag1',
     'Avg PPC': 'Avg PPC_lag1',
-}
-for src_col, lag_col in lag_mapping.items():
-    holdout[lag_col] = holdout[src_col]
-print(f"  Created lag features (no fire risk lag)")
+})
+holdout = holdout.drop(columns=[c for c in holdout.columns if c.endswith('_lag1')], errors='ignore')
+holdout = holdout.merge(panel_2020, on=['ZIP', 'Category'], how='left')
+print(f"  Lag features derived from 2020 panel, joined to holdout")
 
 # ============================================================
 # STEP 3: Compute expanding window stats for 2021 (no fire risk)
@@ -65,7 +72,7 @@ print(f"  Created lag features (no fire risk lag)")
 print("\n--- STEP 3: Compute expanding window stats (no fire risk) ---")
 raw_df = raw_df.sort_values(['ZIP', 'Category', 'Year']).reset_index(drop=True)
 raw_df['expanding_exposure_mean'] = raw_df.groupby(['ZIP', 'Category'])['Earned Exposure'].transform(
-    lambda x: x.expanding().mean().shift(1)
+    lambda x: x.expanding().mean()  # no shift: 2020 row captures history through 2020
 )
 expanding_2020 = raw_df[raw_df['Year'] == 2020][['ZIP', 'Category', 'expanding_exposure_mean']].copy()
 holdout = holdout.merge(expanding_2020, on=['ZIP', 'Category'], how='left')
@@ -272,11 +279,12 @@ print("\n--- STEP 11: Compute ablation metrics ---")
 y_actual_2021 = holdout['Earned Premium'].values
 
 # Load with-fire-risk predictions from Plan 05-01
-preds_with_fire = pd.read_csv("Task2_Data/task2_step5_predictions.csv")
+preds_with_fire = pd.read_csv(os.path.join(SCRIPT_DIR, "task2_step5_predictions.csv"))
 
-# Verify ZIP-level alignment before using predictions (CR-01 fix)
-assert np.array_equal(preds_with_fire['ZIP'].values, holdout['ZIP'].values), \
-    "ZIP misalignment: task2_step5_predictions.csv ZIPs do not match holdout"
+# Verify ZIP+Category alignment (each ZIP appears multiple times — one per Category)
+assert (preds_with_fire['ZIP'].values == holdout['ZIP'].values).all() and \
+       (preds_with_fire['Category'].values == holdout['Category'].values).all(), \
+    "ZIP/Category misalignment: task2_step5_predictions.csv does not match holdout"
 y_pred_with_fire = preds_with_fire['predicted_premium'].values
 
 # Verify length alignment
@@ -327,7 +335,7 @@ else:
 # STEP 12: Save ablation results
 # ============================================================
 print("\n--- STEP 12: Save ablation results ---")
-ABLARESULTS_OUT = "Task2_Data/task2_step5_fire_risk_ablation.csv"
+ABLARESULTS_OUT = os.path.join(SCRIPT_DIR, "task2_step5_fire_risk_ablation.csv")
 ablation_df = pd.DataFrame([
     {'metric_name': 'RMSE', 'with_fire_risk': rmse_with, 'without_fire_risk': rmse_without, 'delta': delta_rmse},
     {'metric_name': 'MAE', 'with_fire_risk': mae_with, 'without_fire_risk': mae_without, 'delta': delta_mae},
@@ -340,7 +348,7 @@ print(f"Ablation results saved: {ABLARESULTS_OUT}")
 preds_no_fire_df = holdout[['ZIP', 'Category']].copy()
 preds_no_fire_df['predicted_premium_no_fire'] = y_pred_2021_no_fire
 preds_no_fire_df['actual_premium'] = y_actual_2021
-preds_no_fire_df.to_csv("Task2_Data/task2_step5_predictions_no_fire.csv", index=False)
-print("No-fire predictions saved: Task2_Data/task2_step5_predictions_no_fire.csv")
+preds_no_fire_df.to_csv(os.path.join(SCRIPT_DIR, "task2_step5_predictions_no_fire.csv"), index=False)
+print("No-fire predictions saved: " + os.path.join(SCRIPT_DIR, "task2_step5_predictions_no_fire.csv"))
 
 print(f"\n=== Ablation complete: {finding} ===")

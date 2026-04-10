@@ -59,13 +59,13 @@ raw_df = pd.read_csv("Task2_Data/task2_step1_panel_clean.csv", low_memory=False)
 raw_df = raw_df.sort_values(['ZIP', 'Category', 'Year']).reset_index(drop=True)
 
 raw_df['expanding_fire_risk_mean'] = raw_df.groupby(['ZIP', 'Category'])['Avg Fire Risk Score'].transform(
-    lambda x: x.expanding().mean().shift(1)
+    lambda x: x.expanding().mean()  # no shift: captures history through current year (2020 for 2021 features)
 )
 raw_df['expanding_fire_risk_std'] = raw_df.groupby(['ZIP', 'Category'])['Avg Fire Risk Score'].transform(
-    lambda x: x.expanding().std().shift(1)
+    lambda x: x.expanding().std()
 )
 raw_df['expanding_exposure_mean'] = raw_df.groupby(['ZIP', 'Category'])['Earned Exposure'].transform(
-    lambda x: x.expanding().mean().shift(1)
+    lambda x: x.expanding().mean()
 )
 
 expanding_2020 = raw_df[raw_df['Year'] == 2020][['ZIP', 'Category', 'expanding_fire_risk_mean', 'expanding_fire_risk_std', 'expanding_exposure_mean']].copy()

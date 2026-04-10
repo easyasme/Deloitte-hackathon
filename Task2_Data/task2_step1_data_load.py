@@ -15,10 +15,13 @@ import pandas as pd
 # ============================================================
 # CONSTANTS
 # ============================================================
-INPUT_FILE = "abfa2rbci2UF6CTj_cal_insurance_fire_census_weather.csv"
-OUTPUT_TRAIN = "task2_step1_panel_clean.csv"
-OUTPUT_HOLDOUT = "task2_step1_2021_holdout.csv"
-VALIDATION_OUT = "task2_step1_validation_report.csv"
+import os
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+INPUT_FILE = os.path.join(SCRIPT_DIR, "abfa2rbci2UF6CTj_cal_insurance_fire_census_weather.csv")
+OUTPUT_TRAIN = os.path.join(SCRIPT_DIR, "task2_step1_panel_clean.csv")
+OUTPUT_HOLDOUT = os.path.join(SCRIPT_DIR, "task2_step1_2021_holdout.csv")
+VALIDATION_OUT = os.path.join(SCRIPT_DIR, "task2_step1_validation_report.csv")
 
 # ============================================================
 # STEP 1: LOAD

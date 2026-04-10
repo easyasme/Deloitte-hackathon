@@ -8,8 +8,11 @@ import pandas as pd
 # ============================================================
 # CONSTANTS
 # ============================================================
-INPUT_FILE = "task2_step1_panel_clean.csv"
-OUTPUT_FILE = "task2_step2_feature_matrix.csv"
+import os
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+INPUT_FILE = os.path.join(SCRIPT_DIR, "task2_step1_panel_clean.csv")
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, "task2_step2_feature_matrix.csv")
 
 # ============================================================
 # STEP 1: Load data
