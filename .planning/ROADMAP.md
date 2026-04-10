@@ -130,9 +130,9 @@ Plans:
 **Plans:** 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Generate 2021 predictions using 80% Panel FE + 20% LightGBM ensemble
-- [ ] 05-02-PLAN.md — Error analysis: RMSE/MAE/MAPE, top-error ZIPs, fire risk correlation
-- [ ] 05-03-PLAN.md — Documentation: model approach, hyperparameters, fire risk ablation, Task 1 comparison
+- [x] 05-01-PLAN.md — Generate 2021 predictions using 80% Panel FE + 20% LightGBM ensemble
+- [x] 05-02-PLAN.md — Error analysis: RMSE/MAE/MAPE, top-error ZIPs, fire risk correlation
+- [x] 05-03-PLAN.md — Documentation: model approach, hyperparameters, fire risk ablation, Task 1 comparison
 
 ---
 
